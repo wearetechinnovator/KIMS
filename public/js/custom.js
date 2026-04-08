@@ -657,15 +657,15 @@ function showBox(id) {
 // renderCalendar();
 
 
-const date = new Date();
-const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-$(".datepicker").datepicker({
-    format: "dd/mm/yyyy",
-    todayBtn: "linked",
-    multidateSeparator: "-",
-    startDate: today,
-    autoclose: true,
-});
+// const date = new Date();
+// const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+// $(".datepicker").datepicker({
+//     format: "dd/mm/yyyy",
+//     todayBtn: "linked",
+//     multidateSeparator: "-",
+//     startDate: today,
+//     autoclose: true,
+// });
 
 // $('.timePicker').datetimepicker({
 //     useCurrent: false,
