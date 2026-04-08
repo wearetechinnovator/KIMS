@@ -42,18 +42,16 @@ export default async function RootLayout({ children }) {
         {meta.metaData?.extraHeaderCode &&<>{parse(meta.metaData?.extraHeaderCode)}</>}
         <link rel="icon" href="/img/favicon.ico" sizes="any" />
         {/* <!-- bootstrap cdn --> */}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
         {/* <!-- font-awasome cdn --> */}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+        <link rel="stylesheet" href="/css/all.min.css" />
         {/* <!-- owl-carousel --> */}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-        <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+        <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
 
         {/* <!-- simple line-icon --> */}
         {/* <!-- <link rel="stylesheet" href="simple-line-icons/css/simple-line-icons.min.css"> --> */}
-        <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" />
+        <link rel="stylesheet" href="/css/simple-line-icons.min.css" />
 
         
         {/* <link rel="stylesheet" href="/css/responsive.css" /> */}
