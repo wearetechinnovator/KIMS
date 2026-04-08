@@ -336,7 +336,7 @@ const banners = pageContent[0]?.bannerItem || [];
 
         <DocTalk dataSet={docTalkDataSet} />
 
-        <SocialMedia />
+        {/* <SocialMedia /> */}
 
       </div>
 
