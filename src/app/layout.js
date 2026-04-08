@@ -58,10 +58,10 @@ export default async function RootLayout({ children }) {
         
         {/* <link rel="stylesheet" href="/css/responsive.css" /> */}
 
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css" />
+        {/* <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> */}
+        {/* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> */}
+        {/* <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css" /> */}
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css" />
         {/* <link rel="stylesheet" href="/css/multislider.css" /> */}
@@ -74,9 +74,9 @@ export default async function RootLayout({ children }) {
         <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></Script>
         <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></Script>
         <Script strategy="beforeInteractive" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></Script>
-        <Script strategy="beforeInteractive" src="https://unpkg.com/aos@next/dist/aos.js"></Script>
-        <Script strategy="beforeInteractive" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></Script>
-        <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></Script>
+        {/* <Script strategy="beforeInteractive" src="https://unpkg.com/aos@next/dist/aos.js"></Script> */}
+        {/* <Script strategy="beforeInteractive" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></Script> */}
+        {/* <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></Script> */}
         <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></Script>
         <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></Script>
         <Script strategy="beforeInteractive" src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></Script>

@@ -416,14 +416,14 @@ $(document).ready(function () {
 
 
 
-AOS.init({
-    offset: 100,
-    delay: 100,
-    duration: 1000,
-    easing: 'ease',
-    once: true,
-    mirror: false,
-});
+// AOS.init({
+//     offset: 100,
+//     delay: 100,
+//     duration: 1000,
+//     easing: 'ease',
+//     once: true,
+//     mirror: false,
+// });
 
 
 
