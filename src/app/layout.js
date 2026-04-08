@@ -81,7 +81,7 @@ export default async function RootLayout({ children }) {
         <Script strategy="beforeInteractive" src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></Script>
         <Script strategy="beforeInteractive" src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></Script>
         <Script src="/js/multislider.min.js" strategy="afterInteractive"></Script>
-        <Script src="/js/custom.min.js" strategy="afterInteractive"></Script>
+        <Script src="/js/custom.js" strategy="afterInteractive"></Script>
         <Script src="/js/script.js" strategy="afterInteractive"></Script>
 
         {meta.analyticsCode &&<>{parse(meta.analyticsCode)}</>}
