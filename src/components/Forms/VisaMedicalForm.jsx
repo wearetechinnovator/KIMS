@@ -1,0 +1,148 @@
+"use client"
+import langLoc from '@/helper/getLangLoc';
+import getStaticText from '@/helper/getStaticText';
+import React, { useEffect, useState } from 'react';
+import getCurrentLangLocClient from '@/helper/getCurrentLangLocClient';
+import { toast } from 'react-toastify';
+import { getBaseUrl } from '@/helper/getBaseUrl';
+
+
+const VisaMedicalForm = ({ title }) => {
+    const [basePath, setBasePath] = useState();
+    const [staticTexts, setStaticTexts] = useState({});
+    const [formData, setFormData] = useState({
+        name: "", number: ""
+    });
+    const [loading, setLoading] = useState(false);
+
+
+    const sendMail = async () => {
+        setLoading(true);
+        if ([formData.name, formData.number].some((field) => !field || field === "")) {
+            toast("Fill the required fields", {
+                theme: 'light',
+                type: 'error',
+                closeOnClick: true
+            })
+            setLoading(false);
+            return;
+        }
+
+        // ✅ Validate phone number (10–13 digits, optional + at start)
+        if (!/^\+?\d{10,13}$/.test(formData.number)) {
+            toast("Enter a valid mobile number", {
+                theme: 'light',
+                type: 'error',
+                closeOnClick: true
+            })
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const htmlMsg = `
+                        <ul>
+                            <li><strong> Subject: </strong> Visa Medical</li>
+                            <li><strong> Name: </strong> ${formData.name}</li>
+                            <li><strong> Mobile Number: </strong> ${formData.number}</li>
+                            <li><strong> Page URL: </strong> ${document.location.href}</li>
+                        </ul>
+                    `;
+            const req = await fetch("/api/send-mail", {
+                method: 'POST',
+                'headers': {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({ data: htmlMsg, formType: "Contact", subject: "Visa Medical", locationData: "trivandrum" }),
+            });
+
+            const res = await req.json();
+
+            if (req.status !== 200) {
+                setLoading(false);
+                return toast(res.err, {
+                    theme: 'light',
+                    type: 'error',
+                    closeOnClick: true
+                })
+            }
+
+            toast("Successfully sent", {
+                theme: 'light',
+                type: 'success',
+                closeOnClick: true
+            })
+
+
+            // Redirect with encoded htmlMsg
+            const encoded = encodeURIComponent(htmlMsg);
+            // Store in localStorage
+            localStorage.setItem('msg', encoded);
+            // Redirect
+            window.location.href = `${basePath}/thank-you`;
+
+            // Remove data
+            setFormData({ name: "", number: "", hospital: '' })
+            setLoading(false);
+            return;
+
+
+        } catch (error) {
+            setLoading(false);
+            return toast("Something went wrong", {
+                theme: 'light',
+                type: 'error',
+                closeOnClick: true
+            })
+        }
+
+    }
+
+    useEffect(() => {
+        const fetchTexts = async () => {
+            setStaticTexts({ ...await getStaticText() })
+        };
+
+        setBasePath(getBaseUrl(true, true));
+        fetchTexts();
+    }, []);
+
+
+
+    return (
+        <>
+
+            <h3>{title}</h3>
+            <div className="rounded-field-form mb-3">
+                <div className="row">
+                    <div className="col-12 mb-3">
+                        <label className="form-label">{staticTexts['Name']} <span>*</span></label>
+                        <input type="text" className="form-control"
+                            placeholder={staticTexts['Enter Your Name']}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            value={formData.name}
+                        />
+                    </div>
+
+                    <div className="col-12 mb-3">
+                        <label className="form-label">{staticTexts['Mobile Number']}<span>*</span></label>
+                        <input type="text" className="form-control"
+                            placeholder={staticTexts['Enter Mobile No.']} name="name"
+                            onChange={(e) => setFormData({ ...formData, number: e.target.value })}
+                            value={formData.number}
+                        />
+                    </div>
+
+                    <div className="col-12 mb-3">
+                        <button className="form-btn" onClick={sendMail} disabled={loading}>
+                            {staticTexts['Submit']}
+                            {loading && <i className="fas fa-spinner fa-spin ms-1"></i>}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default VisaMedicalForm;

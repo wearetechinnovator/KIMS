@@ -1,0 +1,154 @@
+"use client"
+
+import getLocation from "@/app/lib/getLocation";
+import getStaticText from "@/helper/getStaticText";
+import { use, useEffect, useState } from "react";
+
+const ExpertCarousel = ({ dataSet }) => {
+    const [staticTexts, setStaticTexts] = useState({});
+    const [locationData, setLocationData] = useState();
+
+    useEffect(() => {
+        const fetchTexts = async () => {
+            setStaticTexts({ ...await getStaticText() })
+            
+            setLocationData(await getLocation());
+        };
+
+        fetchTexts();
+    }, []);
+
+
+    if (dataSet.data.length < 1 || dataSet.sectionTitle == null) {
+        return;
+    }
+    return (
+        <>
+            <section className="section expert-section ">
+                <div className="container">
+                    <div className="row justify-content-between" data-aos="fade-right">
+                        <div className="col-md-3 col-8">
+                            <div className="main-heading">
+                                <h2>{dataSet.sectionTitle}</h2>
+                            </div>
+                        </div>
+                        <div className="col-md-4  col-4">
+                            <div className="row justify-content-end">
+                                {dataSet.hospitaldata && <div className="col-md-8 d-lg-block d-none">
+                                    <div className="input-group">
+                                        <select value={dataSet.selectedHospital} className="form-select" aria-label="Default select example" onChange={(e) => {
+                                            const value = e.target.value;
+                                            const currentBaseURL = window.location.pathname;
+                                            if (value) {
+                                                // Add hospital param
+                                                location.href = `${currentBaseURL}?hospital=${value}`;
+                                            } else {
+                                                // If empty, go to page without hospital param
+                                                location.href = currentBaseURL;
+                                            }
+                                        }}>
+                                            <option value={''}>{staticTexts['Select Hospital']}</option>
+
+                                            {dataSet.hospitaldata?.map((loc, index) => (
+                                                <option value={loc.slug} key={index + "1"}>{loc.title}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>}
+
+                                <div className="col-md-4 my-auto">
+                                    <div className="over-all-btn text-end">
+                                        <a href={dataSet.buttonURL}>{staticTexts[dataSet.buttonText]}
+                                            <span>
+                                                <img src="/img/slider-right-arrow.svg" className="img-fluid" alt="View All" />
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {dataSet.hospitaldata && <div className="col-md-12 mb-4 d-lg-none d-block">
+                            <div className="input-group">
+                                <select value={dataSet.selectedHospital} className="form-select" aria-label="Default select example"
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        const currentBaseURL = window.location.pathname;
+                                        if (value) {
+                                            // Add hospital param
+                                            location.href = `${currentBaseURL}?hospital=${value}`;
+                                        } else {
+                                            // If empty, go to page without hospital param
+                                            location.href = currentBaseURL;
+                                        }
+                                    }}>
+                                    <option value={''}>{staticTexts['Select Hospital']}</option>
+
+                                    {dataSet.hospitaldata?.map((loc, index) => (
+                                        <option value={loc.slug} key={index + "1"}>{loc.title}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>}
+                    </div>
+
+
+
+
+                    <div className="owl-carousel owl-theme expert">
+                        {
+                            dataSet?.data?.map((d, index) => {
+                                return <div className={`expert-card `} data-aos="fade-right" key={index}>
+                                    <div className={`card border-0 p-lg-4 p-0 ${index === 0 ? 'active' : ""}`}>
+                                        <div className="card-top video-iconfor-doc">
+                                            <a href={dataSet.baseUrl + "/doctor/" + d.slug}>
+                                                <img
+                                                    src={d.doctorImage?.url ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${d.doctorImage?.url}` : "/img/no-image.jpg"}
+                                                    className="img-fluid w-100" alt={`${d.salutation ? d.salutation + " " : ""}${d.name}`}
+                                                    loading='lazy'
+                                                />
+                                            </a>
+                                            {d.teleConsultationAvailable && <a href={locationData?.teleMedicineLink} target='_blank'>
+                                                <span className="video-iconfor-listing"><i class="fa-solid fa-video"></i></span>
+                                            </a>}
+                                        </div>
+                                        <div className="card-content">
+                                            <h4>{`${d.salutation ? d.salutation + " " : ""}${d.name}`}</h4>
+                                            <p>{d.doctorDesignation}</p>
+                                            <h5>{d.specialities[0]?.title}</h5>
+                                            <div className="from-btn">
+
+
+                                                {d.appointmentAvailable && (
+                                                    <a
+                                                        href={`${dataSet.baseUrl}/book-an-appointment/?doctor-slug=${d?.slug}&location=${d?.locations?.[0]?.slug === "generic"
+                                                                ? d?.locations?.[1]?.slug
+                                                                : d?.locations?.[0]?.slug
+                                                            }&hospital=${d?.hospitals?.[0]?.slug}&speciality=${d?.specialities?.[0]?.slug}`}
+                                                        className="btn"
+                                                    >
+                                                        {staticTexts["Appointment"]}
+                                                    </a>
+                                                )}
+
+
+                                                <a href={dataSet.baseUrl + "/doctor/" + d.slug} className="btn vice-btn">{staticTexts['View Profile']}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* <div className="main-btn  text-lg-center text-start ms-lg-0 ms-2 mt-2">
+                                        <a href={dataSet.baseUrl + "/doctor/" + d.slug}>{staticTexts['View Profile']}</a>
+                                    </div> */}
+                                </div>
+                            })
+                        }
+
+                    </div>
+                </div>
+            </section>
+        </>
+    )
+}
+
+export default ExpertCarousel

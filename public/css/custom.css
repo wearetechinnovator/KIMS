@@ -1,0 +1,72 @@
+.academic-new-page-2026 .card {
+    border: 0;
+    border-radius: 10px;
+}
+
+.academic-new-page-2026 .card .card-img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.academic-new-page-2026 .course-we-offer-section-new ul {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.academic-new-page-2026 .course-we-offer-section-new.main-heading h3 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.academic-new-page-2026 .expert-card .card {
+    min-height: 400px;
+    padding: 10px !important;
+}
+
+.academic-new-page-2026 .expert-card .card .card-top {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course-we-offer-section-new h3 a {
+    color: #000 !important;
+}
+
+.course-we-offer-section-new p a {
+    font-size: 14px !important;
+    color: #fff !important;
+    background: #b71c2b;
+    padding: 6px 18px;
+    font-weight: 500;
+    border-radius: 30px;
+    transition: .5s ease;
+}
+
+.scientyfic-proceding-faq .accordion-header .accordion-button {
+    padding: 10px;
+}
+
+.scientyfic-proceding-faq .accordion-header .accordion-button:not(.collapsed) {
+    background-color: #b71c2b;
+    color: #fff;
+    font-weight: 600;
+}
+
+.scientyfic-proceding-faq .accordion-header .accordion-button:not(.collapsed)::after {
+    filter: invert(1); 
+}
+
+.scientyfic-proceding-faq .accordion-header .accordion-button:focus{
+    box-shadow: none;
+}
+
+@media only screen and (max-width:768px) {
+    .academic-new-page-2026 .course-we-offer-section-new ul {
+        column-count: 1;
+        column-gap: 0px;
+    }
+
+    .academic-new-page-2026 .expert-card .card {
+        min-height: auto;
+    }
+}

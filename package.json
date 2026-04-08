@@ -1,0 +1,26 @@
+{
+  "name": "kims_next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "html-react-parser": "^5.2.6",
+    "intl-tel-input": "^25.3.2",
+    "jquery": "^3.7.1",
+    "js-cookie": "^3.0.5",
+    "marked": "^16.0.0",
+    "next": "^15.3.6",
+    "nodemailer": "^7.0.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-photo-view": "^1.2.7",
+    "react-toastify": "^11.0.5",
+    "reactjs-popup": "^2.0.6",
+    "select2": "^4.1.0-rc.0"
+  }
+}
